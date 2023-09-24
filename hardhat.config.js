@@ -20,7 +20,11 @@ const KOVAN_RPC_URL =
     process.env.KOVAN_RPC_URL || "https://eth-kovan.alchemyapi.io/v2/your-api-key"
 const POLYGON_MAINNET_RPC_URL =
     process.env.POLYGON_MAINNET_RPC_URL || "https://polygon-mainnet.alchemyapi.io/v2/your-api-key"
-const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x"
+const GOERLI_RPC_URL =
+    process.env.GOERLI_RPC_URL ||
+    "https://eth-goerli.g.alchemy.com/v2/QvQjcbAi5bu_qsRwc_pGYTR2F7YiPwgS"
+const PRIVATE_KEY =
+    process.env.PRIVATE_KEY || "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
 // optional
 const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
 
@@ -60,6 +64,13 @@ module.exports = {
             saveDeployments: true,
             chainId: 4,
         },
+        goerli: {
+            url: GOERLI_RPC_URL,
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+            saveDeployments: true,
+            chainId: 5,
+            gas: 6000000,
+        },
         mainnet: {
             url: MAINNET_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
@@ -82,6 +93,7 @@ module.exports = {
             rinkeby: ETHERSCAN_API_KEY,
             kovan: ETHERSCAN_API_KEY,
             polygon: POLYGONSCAN_API_KEY,
+            goerli: ETHERSCAN_API_KEY,
         },
     },
     gasReporter: {
@@ -93,7 +105,7 @@ module.exports = {
     },
     contractSizer: {
         runOnCompile: false,
-        only: ["Raffle"],
+        only: ["NftMarketplace"],
     },
     namedAccounts: {
         deployer: {
