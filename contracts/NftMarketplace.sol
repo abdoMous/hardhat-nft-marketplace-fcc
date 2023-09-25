@@ -105,7 +105,7 @@ contract NftMarketplace is ReentrancyGuard {
     ////////////////////////
 
     /// @notice Method for listing your NFT on the marketplace
-    /// @dev Tecnically, we could have the contract be the escrow for the NFTs but this way people can still hold their NFTs listed.
+    /// @dev contract users can still hold their NFTs listed, but give the contract the ability to transfaire it / sell it.
     /// @param nftAddress: Address of the NFT
     /// @param tokenId: The token ID of the NFT
     /// @param price: sale price of the listed NFT

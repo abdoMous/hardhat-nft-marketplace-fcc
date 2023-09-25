@@ -14,23 +14,17 @@ const MAINNET_RPC_URL =
     process.env.MAINNET_RPC_URL ||
     process.env.ALCHEMY_MAINNET_RPC_URL ||
     "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
-const RINKEBY_RPC_URL =
-    process.env.RINKEBY_RPC_URL || "https://eth-rinkeby.alchemyapi.io/v2/your-api-key"
-const KOVAN_RPC_URL =
-    process.env.KOVAN_RPC_URL || "https://eth-kovan.alchemyapi.io/v2/your-api-key"
+const SEPOLIA_RPC_URL =
+    process.env.SEPOLIA_RPC_URL || "https://eth-sepolia.g.alchemy.com/v2/YOUR-API-KEY"
 const POLYGON_MAINNET_RPC_URL =
     process.env.POLYGON_MAINNET_RPC_URL || "https://polygon-mainnet.alchemyapi.io/v2/your-api-key"
-const GOERLI_RPC_URL =
-    process.env.GOERLI_RPC_URL ||
-    "https://eth-goerli.g.alchemy.com/v2/QvQjcbAi5bu_qsRwc_pGYTR2F7YiPwgS"
-const PRIVATE_KEY =
-    process.env.PRIVATE_KEY || "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x"
 // optional
-const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
+const MNEMONIC = process.env.MNEMONIC
 
 // Your API key for Etherscan, obtain one at https://etherscan.io/
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Your etherscan API key"
-const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "Your polygonscan API key"
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "etherscan API key"
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "polygonscan API key"
 const REPORT_GAS = process.env.REPORT_GAS || false
 
 module.exports = {
@@ -46,30 +40,14 @@ module.exports = {
         localhost: {
             chainId: 31337,
         },
-        kovan: {
-            url: KOVAN_RPC_URL,
-            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-            //accounts: {
-            //     mnemonic: MNEMONIC,
-            // },
-            saveDeployments: true,
-            chainId: 42,
-        },
-        rinkeby: {
-            url: RINKEBY_RPC_URL,
+        sepolia: {
+            url: SEPOLIA_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             //   accounts: {
             //     mnemonic: MNEMONIC,
             //   },
             saveDeployments: true,
-            chainId: 4,
-        },
-        goerli: {
-            url: GOERLI_RPC_URL,
-            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-            saveDeployments: true,
-            chainId: 5,
-            gas: 6000000,
+            chainId: 11155111,
         },
         mainnet: {
             url: MAINNET_RPC_URL,
@@ -90,10 +68,8 @@ module.exports = {
     etherscan: {
         // npx hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
         apiKey: {
-            rinkeby: ETHERSCAN_API_KEY,
-            kovan: ETHERSCAN_API_KEY,
+            sepolia: ETHERSCAN_API_KEY,
             polygon: POLYGONSCAN_API_KEY,
-            goerli: ETHERSCAN_API_KEY,
         },
     },
     gasReporter: {
